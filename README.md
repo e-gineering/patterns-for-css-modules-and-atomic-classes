@@ -25,7 +25,7 @@
 
 <br>
 
-### Beware the "class list order fallacy"
+## Beware the "class list order fallacy"
 The order of classes defined in a `className` attribute does not affect how the rules may override each other. It is the order in which those classes _are loaded_ into the CSS engine which matters.
 
 Consider the following JSX element which we'll suppose is from a reusable component. It uses a class from a CSS Module and a class list coming from our component props. We want the developers consuming our reusable component (let's call them our "consumers") to be able to override any of the styles we've applied.
@@ -44,7 +44,7 @@ That's unintended behavior. We don't want our consumers to need `!important`, wa
 
 <br><br>
 
-### Creating overridable default styles
+## Creating overridable default styles
 
 ---
 
