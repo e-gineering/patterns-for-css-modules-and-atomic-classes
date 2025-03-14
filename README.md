@@ -23,6 +23,8 @@
 
 ---
 
+<br><br>
+
 ### Beware the "class list order fallacy"
 The order of classes defined in a `className` attribute does not affect how the rules may override each other. It is the order in which those classes _are loaded_ into the CSS engine which matters.
 
@@ -39,6 +41,8 @@ Consider: What if `classNames` contains `.btn-primary`? That's a Bootstrap class
 That's unintended behavior. We don't want our consumers to need `!important`, waste valuable time debugging their CSS, or resorting to CSS Modules or Inline Styles unnecessarily. As much as possible, their solution should "just work." So what do we do?
 
 <sup>\[[Jump to the top](#patterns-for-css-modules--atomic-classes)\]</sup>
+
+<br><br>
 
 ### Creating overridable default styles
 
@@ -76,7 +80,9 @@ That's unintended behavior. We don't want our consumers to need `!important`, wa
 3. **Use the [`:where(.foo)` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/:where) in a CSS Module to define overridable styles.** This pseudo-class reduces the specificity of the provided selector to 0, making these styles easy to override.
 
 ```css
-/* These styles and those from any nested style blocks will depend on the :where() selector, which will present no problem to anyone seeking to provide their own styles. */
+/* These styles and those from any nested style blocks will depend
+   on the :where() selector, which will present no problem to anyone
+  seeking to provide their own styles. */
 :where(ul.defaultStyles) {
   list-style: none;
   padding: 0;
