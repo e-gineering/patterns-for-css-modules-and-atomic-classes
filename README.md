@@ -37,7 +37,7 @@ Consider: What if `classNames` contains `.btn-primary`? That's a Bootstrap class
 
 That's unintended behavior. We don't want our consumers to need `!important`, waste valuable time debugging their CSS, or resorting to CSS Modules or Inline Styles unnecessarily. As much as possible, their solution should "just work." So what do we do?
 
-\[[Jump to the top](#patterns-for-css-modules--atomic-classes)\]
+<sup>\[[Jump to the top](#patterns-for-css-modules--atomic-classes)\]</sup>
 
 ### Creating overridable default styles
 
@@ -67,4 +67,4 @@ That's unintended behavior. We don't want our consumers to need `!important`, wa
 }
 ```
 
-\[[Jump to the top](#patterns-for-css-modules--atomic-classes)\]
+<sup>\[[Jump to the top](#patterns-for-css-modules--atomic-classes)\]</sup>
