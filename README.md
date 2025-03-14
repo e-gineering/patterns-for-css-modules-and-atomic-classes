@@ -11,8 +11,12 @@
   <hr>
   <blockquote>
     <ul>
-      <li><strong><em>Atomic classes:</strong></em> Also known as "utility classes" or "helper classes"</li>
-      <li><strong><em>CSS Modules:</strong></em> An approach to pseudo-scoping classes and other custom identifiers in CSS (e.g. animation names, named grid lines, and named grid template areas), by prefixing these names with a hash, preventing name collisions. This transformation happens during the build process.</li>
+      <li>
+        <strong><em>Atomic classes:</em></strong> Also known as "utility classes" or "helper classes."
+      </li>
+      <li>
+        <strong><em>CSS Modules:</em></strong> An approach to pseudo-scoping classes and other custom identifiers in CSS (e.g. animation names, named grid lines, and named grid template areas), by prefixing these names with a hash, preventing name collisions. This transformation happens during the build process.
+      </li>
     </ul>
   </blockquote>
 </details>
@@ -45,10 +49,21 @@ That's unintended behavior. We don't want our consumers to need `!important`, wa
   <hr>
   <blockquote>
     <ol>
-      <li>Incoming classes from props, Bootstrap classes, and our own component's custom classes will all usually match a selector with a specificity value of 10, and generally _should._ When two conflicting rules match in terms of specificity, the last to be read by the CSS engine will win.</li>
-      <li>Bootstrap classes are defined in an order which is hidden away from us in an inconvenient-to-reference bundle file.</li>
-      <li>Bootstrap utility classes commonly use `!important`, elevating the rules _beyond specificity_ (this could be thought of as ∞ specificity). That's fine for content development (which shouldn't need to be overridden), but it's bad news for a style rule specifically intended to be overridden.</li>
-      <li>As for incoming classes from props and our own component's custom classes, it is, for a variety of reasons, _impossible to be certain_ which class will be read by the CSS engine first.</li>
+      <li>
+        Incoming classes from props, Bootstrap classes, and our own component's custom classes will all usually match a selector with a specificity value of 10, and generally _should._ When two conflicting rules match in terms of specificity, <strong>the last to be read by the CSS engine will win</strong>.
+      </li>
+      <li>
+        Bootstrap classes are defined in <strong>an order which is hidden away</strong> from us in an inconvenient-to-reference bundle file. Sometimes the order can be guessed, but this is unreliable.
+      </li>
+      <li>
+        As for incoming classes from props and our own component's custom classes, it is, for a variety of reasons, <strong>impossible to be certain</strong> which class will be read by the CSS engine first except through experimentation.
+      </li>
+      <li>
+        Bootstrap utility classes commonly use `!important`, <strong>elevating the rules beyond specificity</strong> (this can be thought of as ∞ specificity). That's normally fine for content development (which shouldn't need to be overridden), but it's bad news for a style rule specifically intended to be overridden.
+      </li>
+      <li>
+        Together these traits make it easy to design UI components which resist later styling and confound expectations, contributing to the common complaints that CSS development is fraught with time-consuming trial-and-error and mysterious behavior.
+      </li>
     </ol>
     <p><em>Therefore...</em></p>
   </blockquote>
@@ -56,12 +71,20 @@ That's unintended behavior. We don't want our consumers to need `!important`, wa
 
 ---
 
-1. **Avoid Bootstrap for styles which ought to be overridable.** Though _generally,_ we want to use Bootstrap for most daily development for our web app (that is, content development), we can't always follow the same practices when creating libraries or other sharable code. In these cases, avoid using Bootstrap utility classes – _especially_ those which apply `!important`.
-2. **Use [`:where(.foo)`](https://developer.mozilla.org/en-US/docs/Web/CSS/:where) in a CSS Module to define overridable styles.** This pseudo-class reduces the specificity of the provided selector to 0, making these styles easy to override.
+1. **Identify the styles which ought to be overridable.** In terms of [Atomic Design](https://www.justinmind.com/ui-design/atomic-design), these are usually "Atoms" and "Molecules" – reusable UI components. These components usually _receive_ user-facing content as `props` or `children` exclusively. Content comes from the outside.
+2. **Avoid Bootstrap for styles which ought to be overridable.** Though _generally,_ we want to use Bootstrap for most daily development for our web app (that is, content development), this is an exception.
+3. **Use the [`:where(.foo)` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/:where) in a CSS Module to define overridable styles.** This pseudo-class reduces the specificity of the provided selector to 0, making these styles easy to override.
 
 ```css
-:where(.defaultStyles) {
-  /* These styles and those from any nested style blocks will depend on the :where() selector, which will present no problem to anyone seeking to provide their own styles. */
+/* These styles and those from any nested style blocks will depend on the :where() selector, which will present no problem to anyone seeking to provide their own styles. */
+:where(ul.defaultStyles) {
+  list-style: none;
+  padding: 0;
+
+  & > li {
+    display: inline;
+    margin-right: 1rem;
+  }
 }
 ```
 
