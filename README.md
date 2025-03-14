@@ -1,8 +1,8 @@
 # Patterns for CSS Modules & Atomic Classes
 
-> ### Explore this guide
-> - [Beware the "class list order fallacy"](#beware-the-class-list-order-fallacy)
-> - [Creating overridable default styles](#creating-overridable-default-styles)
+### Explore this guide
+- [Beware the "class list order fallacy"](#beware-the-class-list-order-fallacy)
+- [Creating overridable default styles](#creating-overridable-default-styles)
 
 ---
 
@@ -23,7 +23,7 @@
 
 ---
 
-<br><br>
+<br>
 
 ### Beware the "class list order fallacy"
 The order of classes defined in a `className` attribute does not affect how the rules may override each other. It is the order in which those classes _are loaded_ into the CSS engine which matters.
@@ -95,3 +95,5 @@ That's unintended behavior. We don't want our consumers to need `!important`, wa
 ```
 
 <sup>\[[Jump to the top](#patterns-for-css-modules--atomic-classes)\]</sup>
+
+<br><br><br><br>
