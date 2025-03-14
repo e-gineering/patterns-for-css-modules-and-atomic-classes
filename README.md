@@ -7,13 +7,14 @@
 ---
 
 <details>
-<summary>Learn more: <strong>Terminology</strong></summary>
-
----
-
->  - ___Atomic classes:___ Also known as "utility classes" or "helper classes"
->  - ___CSS Modules:___ An approach to pseudo-scoping classes and other custom identifiers in CSS (e.g. animation names, named grid lines, and named grid template areas), by prefixing these names with a hash, preventing name collisions. This transformation happens during the build process.
-
+  <summary>Learn more: <strong>Terminology</strong></summary>
+  <hr>
+  <blockquote>
+    <ul>
+      <li><strong><em>Atomic classes:</strong></em> Also known as "utility classes" or "helper classes"</li>
+      <li><strong><em>CSS Modules:</strong></em> An approach to pseudo-scoping classes and other custom identifiers in CSS (e.g. animation names, named grid lines, and named grid template areas), by prefixing these names with a hash, preventing name collisions. This transformation happens during the build process.</li>
+    </ul>
+  </blockquote>
 </details>
 
 ---
@@ -40,16 +41,17 @@ That's unintended behavior. We don't want our consumers to need `!important`, wa
 ---
 
 <details>
-<summary>Learn more: <strong><em>The Technical Challenge</em></strong></summary>
-
----
-
-> 1. Incoming classes from props, Bootstrap classes, and our own component's custom classes will all usually match a selector with a specificity value of 10, and generally _should._ When two conflicting rules match in terms of specificity, the last to be read by the CSS engine will win.
-> 2. Bootstrap classes are defined in an order which is hidden away from us in an inconvenient-to-reference bundle file.
-> 3. Bootstrap utility classes commonly use `!important`, elevating the rules _beyond specificity_ (this could be thought of as ∞ specificity). That's fine for content development (which shouldn't need to be overridden), but it's bad news for a style rule specifically intended to be overridden.
-> 4. As for incoming classes from props and our own component's custom classes, it is, for a variety of reasons, _impossible to be certain_ which class will be read by the CSS engine first.
-> 
-> Therefore...
+  <summary>Learn more: <strong><em>The Technical Challenge</em></strong></summary>
+  <hr>
+  <blockquote>
+    <ol>
+      <li>Incoming classes from props, Bootstrap classes, and our own component's custom classes will all usually match a selector with a specificity value of 10, and generally _should._ When two conflicting rules match in terms of specificity, the last to be read by the CSS engine will win.</li>
+      <li>Bootstrap classes are defined in an order which is hidden away from us in an inconvenient-to-reference bundle file.</li>
+      <li>Bootstrap utility classes commonly use `!important`, elevating the rules _beyond specificity_ (this could be thought of as ∞ specificity). That's fine for content development (which shouldn't need to be overridden), but it's bad news for a style rule specifically intended to be overridden.</li>
+      <li>As for incoming classes from props and our own component's custom classes, it is, for a variety of reasons, _impossible to be certain_ which class will be read by the CSS engine first.</li>
+    </ol>
+    <p><em>Therefore...</em></p>
+  </blockquote>
 </details>
 
 ---
