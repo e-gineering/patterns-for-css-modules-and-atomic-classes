@@ -1,12 +1,8 @@
 # Patterns for CSS Modules & Atomic Classes
 
-<nav aria-label="Table of contents">
-
 > ### Explore this guide
 > - [Beware the "class list order fallacy"](#beware-the-class-list-order-fallacy)
 > - [Creating overridable default styles](#creating-overridable-default-styles)
-
-</nav>
 
 ---
 
